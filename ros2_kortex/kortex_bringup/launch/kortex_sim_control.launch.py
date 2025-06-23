@@ -61,7 +61,11 @@ def launch_setup(context, *args, **kwargs):
         # https://answers.ros.org/question/397123/how-to-access-the-runtime-value-of-a-launchconfiguration-instance-within-custom-launch-code-injected-via-an-opaquefunction-in-ros2/
         [
             FindPackageShare(description_package),
-            "arms/" + robot_type.perform(context) + "/" + dof.perform(context) + "dof/config",
+            "arms/"
+            + robot_type.perform(context)
+            + "/"
+            + dof.perform(context)
+            + "dof/config",
             controllers_file,
         ]
     )
@@ -106,7 +110,9 @@ def launch_setup(context, *args, **kwargs):
             " ",
         ]
     )
-    robot_description = {"robot_description": robot_description_content.perform(context)}
+    robot_description = {
+        "robot_description": robot_description_content.perform(context)
+    }
 
     robot_state_publisher_node = Node(
         package="robot_state_publisher",
@@ -201,11 +207,11 @@ def launch_setup(context, *args, **kwargs):
             "-allow_renaming",
             "true",
             "-x",
-            "0.0",
+            "-0.75",
             "-y",
-            "0.0",
+            "-0.55",
             "-z",
-            "0.3",
+            "0.4",
             "-R",
             "0.0",
             "-P",
@@ -221,7 +227,8 @@ def launch_setup(context, *args, **kwargs):
             [FindPackageShare("ros_gz_sim"), "/launch/gz_sim.launch.py"]
         ),
         launch_arguments={
-            "gz_args": " -r -v 3 /home/user/data/openpi/kinova_test/living_room/living_room.sdf --physics-engine gz-physics-bullet-featherstone-plugin"
+            "gz_args": " -r -v 3 /home/user/data/openpi/kinova_test/living_room/1.sdf --physics-engine gz-physics-bullet-featherstone-plugin"
+            # colcon build --packages-select kortex_bringup
         }.items(),
         condition=IfCondition(sim_gazebo),
     )
@@ -236,6 +243,9 @@ def launch_setup(context, *args, **kwargs):
             "/wrist_mounted_camera/depth_image@sensor_msgs/msg/Image[gz.msgs.Image",
             "/wrist_mounted_camera/points@sensor_msgs/msg/PointCloud2[gz.msgs.PointCloudPacked",
             "/wrist_mounted_camera/camera_info@sensor_msgs/msg/CameraInfo[gz.msgs.CameraInfo",
+            # 顶部摄像头
+            "/world/working_living_room/model/over_table_camera/link/camera_link/sensor/camera_sensor/image@sensor_msgs/msg/Image[gz.msgs.Image",
+            "/world/working_living_room/model/over_table_camera/link/camera_link/sensor/camera_sensor/camera_info@sensor_msgs/msg/CameraInfo[gz.msgs.CameraInfo",
         ],
         output="screen",
     )
@@ -376,7 +386,11 @@ def generate_launch_description():
         )
     )
     declared_arguments.append(
-        DeclareLaunchArgument("launch_rviz", default_value="true", description="Launch RViz?")
+        DeclareLaunchArgument(
+            "launch_rviz", default_value="true", description="Launch RViz?"
+        )
     )
 
-    return LaunchDescription(declared_arguments + [OpaqueFunction(function=launch_setup)])
+    return LaunchDescription(
+        declared_arguments + [OpaqueFunction(function=launch_setup)]
+    )
