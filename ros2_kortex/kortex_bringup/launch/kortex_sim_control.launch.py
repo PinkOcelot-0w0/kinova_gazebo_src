@@ -244,8 +244,10 @@ def launch_setup(context, *args, **kwargs):
             "/wrist_mounted_camera/points@sensor_msgs/msg/PointCloud2[gz.msgs.PointCloudPacked",
             "/wrist_mounted_camera/camera_info@sensor_msgs/msg/CameraInfo[gz.msgs.CameraInfo",
             # 顶部摄像头
-            "/world/working_living_room/model/over_table_camera/link/camera_link/sensor/camera_sensor/image@sensor_msgs/msg/Image[gz.msgs.Image",
-            "/world/working_living_room/model/over_table_camera/link/camera_link/sensor/camera_sensor/camera_info@sensor_msgs/msg/CameraInfo[gz.msgs.CameraInfo",
+            "/world/working_living_room/model/left_camera/link/camera_link/sensor/camera_sensor/image@sensor_msgs/msg/Image[gz.msgs.Image",
+            "/world/working_living_room/model/left_camera/link/camera_link/sensor/camera_sensor/camera_info@sensor_msgs/msg/CameraInfo[gz.msgs.CameraInfo",
+            "/world/working_living_room/model/right_camera/link/camera_link/sensor/camera_sensor/image@sensor_msgs/msg/Image[gz.msgs.Image",
+            "/world/working_living_room/model/right_camera/link/camera_link/sensor/camera_sensor/camera_info@sensor_msgs/msg/CameraInfo[gz.msgs.CameraInfo",
         ],
         output="screen",
     )
