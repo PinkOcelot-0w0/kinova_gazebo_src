@@ -211,7 +211,7 @@ def launch_setup(context, *args, **kwargs):
             "-y",
             "-0.55",
             "-z",
-            "0.1",
+            "0.4",
             "-R",
             "0.0",
             "-P",
@@ -252,12 +252,20 @@ def launch_setup(context, *args, **kwargs):
         output="screen",
     )
 
+    # 速度控制器
+    joint_group_velocity_controller_spawner = Node(
+        package="controller_manager",
+        executable="spawner",
+        arguments=["joint_group_velocity_controller", "-c", "/controller_manager"],
+    )
+
     nodes_to_start = [
         bridge,
         robot_state_publisher_node,
         joint_state_broadcaster_spawner,
         delay_rviz_after_joint_state_broadcaster_spawner,
         robot_traj_controller_spawner,
+        joint_group_velocity_controller_spawner,  # 新增：速度控制器spawner
         robot_pos_controller_spawner,
         robot_hand_controller_spawner,
         robot_hand_lite_controller_spawner,

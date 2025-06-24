@@ -1,12 +1,15 @@
 controller_manager:
   ros__parameters:
-    update_rate: 1000  # Hz
+    update_rate: 1000 # Hz
 
     joint_state_broadcaster:
       type: joint_state_broadcaster/JointStateBroadcaster
 
     joint_trajectory_controller:
       type: joint_trajectory_controller/JointTrajectoryController
+    # 新增速度控制器
+    joint_group_velocity_controller:
+      type: velocity_controllers/JointGroupVelocityController
 
     twist_controller:
       type: picknik_twist_controller/PicknikTwistController
@@ -38,6 +41,17 @@ joint_trajectory_controller:
     constraints:
       stopped_velocity_tolerance: 0.0
       goal_time: 0.0
+
+joint_group_velocity_controller:
+  ros__parameters:
+    joints:
+      - joint_1
+      - joint_2
+      - joint_3
+      - joint_4
+      - joint_5
+      - joint_6
+      - joint_7
 
 twist_controller:
   ros__parameters:
