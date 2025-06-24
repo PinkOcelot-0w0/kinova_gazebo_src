@@ -211,7 +211,7 @@ def launch_setup(context, *args, **kwargs):
             "-y",
             "-0.55",
             "-z",
-            "0.4",
+            "0.1",
             "-R",
             "0.0",
             "-P",
@@ -246,8 +246,8 @@ def launch_setup(context, *args, **kwargs):
             # 顶部摄像头
             "/world/working_living_room/model/left_camera/link/camera_link/sensor/camera_sensor/image@sensor_msgs/msg/Image[gz.msgs.Image",
             "/world/working_living_room/model/left_camera/link/camera_link/sensor/camera_sensor/camera_info@sensor_msgs/msg/CameraInfo[gz.msgs.CameraInfo",
-            "/world/working_living_room/model/right_camera/link/camera_link/sensor/camera_sensor/image@sensor_msgs/msg/Image[gz.msgs.Image",
-            "/world/working_living_room/model/right_camera/link/camera_link/sensor/camera_sensor/camera_info@sensor_msgs/msg/CameraInfo[gz.msgs.CameraInfo",
+            # "/world/working_living_room/model/right_camera/link/camera_link/sensor/camera_sensor/image@sensor_msgs/msg/Image[gz.msgs.Image",
+            # "/world/working_living_room/model/right_camera/link/camera_link/sensor/camera_sensor/camera_info@sensor_msgs/msg/CameraInfo[gz.msgs.CameraInfo",
         ],
         output="screen",
     )
